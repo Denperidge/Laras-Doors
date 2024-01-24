@@ -1,0 +1,17 @@
+#tiles {
+    display: grid;    
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 1px solid black;
+}
+
+.character {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
