@@ -1,28 +1,4 @@
 
-function createBoard(rows, columns) {
-    $("#tiles").css({
-        "grid-template-columns": "repeat(" + columns + ", 100px)",
-        "grid-template-rows": "repeat(" + rows + ", 100px"
-    });
-
-    for (let i = 0; i < (rows*columns); i++) {
-        const tile = document.createElement("div");
-        tile.classList.add("tile")
-        $("#tiles").append(tile);
-    }
-
-    $(".tile").click(movePlayerToTile);
-}
-
-let rowSize = 4;
-let ColumnSize = 6;
-createBoard(rowSize, ColumnSize);
-
-function movePlayerToTile(e) {
-    console.log($(e.target).index())
-    player.move(0,0, $(e.target).index())
-
-}
 
 class Character {
     constructor() {
@@ -76,8 +52,6 @@ class Character {
             tileIndex + ColumnSize  // Bellow
         ]; 
 
-        console.log("aFDSIH")
-        
         for (let i = 0; i < tilesToEnable.length; i++) {
             console.log(tilesToEnable[i])
             try {
@@ -92,6 +66,39 @@ class Character {
     }
     
     
+}
+
+class Tile extends HTMLElement {
+    constructor() {
+        super();
+        return this;
+    }
+}
+
+
+function createBoard(rows, columns) {
+    $("#tiles").css({
+        "grid-template-columns": "repeat(" + columns + ", 100px)",
+        "grid-template-rows": "repeat(" + rows + ", 100px"
+    });
+
+    for (let i = 0; i < (rows*columns); i++) {
+        const tile = new Tile();
+        tile.classList.add("tile")
+        $("#tiles").append(tile);
+    }
+
+    $(".tile").click(movePlayerToTile);
+}
+
+let rowSize = 4;
+let ColumnSize = 6;
+createBoard(rowSize, ColumnSize);
+
+function movePlayerToTile(e) {
+    console.log($(e.target).index())
+    player.move(0,0, $(e.target).index())
+
 }
 const player = new Character();
 
